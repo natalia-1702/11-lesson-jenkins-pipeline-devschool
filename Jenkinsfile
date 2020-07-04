@@ -9,15 +9,10 @@ pipeline {
 
   stages {
 
-    stage('Git') {
-      steps {
-        git 'https://github.com/natalya-limareva/boxfuse-sample-java-war-hello.git'
-      }
-    }
-
     stage('Build war') {
       steps {
-        sh 'mvn package'
+        git 'https://github.com/natalya-limareva/boxfuse-sample-java-war-hello.git'
+        sh 'cd boxfuse-sample-java-war-hello && mvn package'
         sh 'mkdir /opt/temp'
         sh 'cp ./target/*.war /opt/temp'
       }
@@ -34,6 +29,7 @@ pipeline {
 
     stage('Run docker on prod-VM') {
       steps {
+        //сначала сгенерить ключиsh 'ssh root@10.128.0.17'
         sh 'docker login -u 17021993 -p 17021993Nv'
         sh 'docker pull 17021993/mywebapp:1.0'
       }
