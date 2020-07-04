@@ -29,7 +29,9 @@ pipeline {
 
     stage('Run docker on prod-VM') {
       steps {
-        //сначала сгенерить ключиsh 'ssh root@10.128.0.17'
+        //заранее нужно ключ прокинуть!!!
+        sh 'ssh-keyscan -H 10.128.0.17 >> ~/.ssh/known_hosts'
+        sh 'ssh root@10.128.0.17'
         sh 'docker login -u 17021993 -p 17021993Nv'
         sh 'docker pull 17021993/mywebapp:1.0'
       }
