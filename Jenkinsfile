@@ -2,34 +2,33 @@ pipeline {
   agent none
 
   stages {
-
-    stage('Build war') { 
-      agent {
-        docker {
-          image 'maven:3-jdk-11'
-        }
-      }
-      steps {
-        git 'https://github.com/natalya-limareva/boxfuse-sample-java-war-hello.git'
-        sh 'ls -la'        
-        //sh 'cd boxfuse-sample-java-war-hello && mvn package'
-        sh 'mvn package'
-        sh 'ls ./target/*.war'
-        sh 'cp ./target/*.war /tmp'
-        sh 'ls /tmp'
+//
+  //  stage('Build war') { 
+    //  agent {
+      //  docker {
+        //  image 'maven:3-jdk-11'
+        //}
+      //}
+      //steps {
+ //       git 'https://github.com/natalya-limareva/boxfuse-sample-java-war-hello.git'
+   //     sh 'ls -la'        
+     //   sh 'mvn package'
+     //   sh 'ls ./target/*.war'
+      //  sh 'cp ./target/*.war /tmp'
+       // sh 'ls /tmp'
         
-      }
-    }
+     // }
+    //}
 
-    stage('Make docker image') {
-      agent any
-      steps {
-        sh 'docker login -u 17021993 -p 17021993Nv'
-        sh 'docker build --tag=17021993/mywebapp:1.0 .'
-        sh 'docker push 17021993/mywebapp:1.0'
+   // stage('Make docker image') {
+    //  agent any
+     // steps {
+      //  sh 'docker login -u 17021993 -p 17021993Nv'
+      //  sh 'docker build --tag=17021993/mywebapp:1.0 .'
+       // sh 'docker push 17021993/mywebapp:1.0'
 
-      }
-    }
+      //}
+    //}
 
     stage('Run docker on prod-VM') {
       agent any
