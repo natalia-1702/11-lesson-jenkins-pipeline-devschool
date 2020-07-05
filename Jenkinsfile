@@ -1,13 +1,14 @@
 pipeline {
-  agent {
-    docker {
-      image 'maven:3-jdk-11'
-    }
-  }
+  agent none
 
   stages {
 
-    stage('Build war') {
+    stage('Build war') { 
+      agent {
+        docker {
+          image 'maven:3-jdk-11'
+        }
+      }
       steps {
         git 'https://github.com/natalya-limareva/boxfuse-sample-java-war-hello.git'
         sh 'ls -la'        
@@ -21,6 +22,7 @@ pipeline {
     }
 
     stage('Make docker image') {
+      agent any
       steps {
         sh 'docker login -u 17021993 -p 17021993Nv'
         sh 'docker build --tag=17021993/mywebapp:1.0 .'
@@ -30,6 +32,7 @@ pipeline {
     }
 
     stage('Run docker on prod-VM') {
+      agent any
       steps {
         //заранее нужно ключ прокинуть!!!
         sh 'ssh-keyscan -H 10.128.0.17 >> ~/.ssh/known_hosts'
