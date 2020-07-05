@@ -1,12 +1,9 @@
 pipeline {
-  agent any
-  //{
-
-    //docker {
+  agent {
+    docker {
       image 'maven:3-jdk-11'
-    //}
-
-  //}
+    }
+  }
 
   stages {
 
