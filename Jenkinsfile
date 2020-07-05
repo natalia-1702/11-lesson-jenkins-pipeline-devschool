@@ -15,7 +15,7 @@ pipeline {
         sh 'ls -la'        
         //sh 'cd boxfuse-sample-java-war-hello && mvn package'
         sh 'mvn package'
-        sh 'mkdir /opt/temp'
+        sh 'sudo mkdir /opt/temp'
         sh 'ls ./target/*.war'
         sh 'cp ./target/*.war /opt/temp'
       }
