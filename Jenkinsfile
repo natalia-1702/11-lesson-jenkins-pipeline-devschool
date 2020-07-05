@@ -13,8 +13,10 @@ pipeline {
       steps {
         git 'https://github.com/natalya-limareva/boxfuse-sample-java-war-hello.git'
         sh 'ls -la'        
-        sh 'cd boxfuse-sample-java-war-hello && mvn package'
+        //sh 'cd boxfuse-sample-java-war-hello && mvn package'
+        sh 'mvn package'
         sh 'mkdir /opt/temp'
+        sh 'ls ./target/*.war'
         sh 'cp ./target/*.war /opt/temp'
       }
     }
