@@ -12,6 +12,7 @@ pipeline {
     stage('Build war') {
       steps {
         git 'https://github.com/natalya-limareva/boxfuse-sample-java-war-hello.git'
+        sh 'ls -la'        
         sh 'cd boxfuse-sample-java-war-hello && mvn package'
         sh 'mkdir /opt/temp'
         sh 'cp ./target/*.war /opt/temp'
