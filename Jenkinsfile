@@ -36,7 +36,7 @@ pipeline {
         //заранее нужно ключ прокинуть!!!
         //sh 'ssh-keyscan -H 10.128.0.17 >> ~/.ssh/known_hosts'
         sh 'ssh -i /var/lib/jenkins/.ssh/id_rsa root@10.128.0.17  "docker login -u 17021993 -p 17021993Nv"'
-        sh 'ssh -i /var/lib/jenkins/.ssh/id_rsa root@10.128.0.17 "docker pull 17021993/mywebapp:1.0"'
+        sh 'ssh -i /var/lib/jenkins/.ssh/id_rsa root@10.128.0.17 "docker run -d -p 8080:8080 17021993/mywebapp:1.0"'
         //sh 'docker login -u 17021993 -p 17021993Nv'
         //sh 'docker pull 17021993/mywebapp:1.0'
       }
