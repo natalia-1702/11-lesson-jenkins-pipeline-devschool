@@ -34,7 +34,7 @@ pipeline {
       agent any
       steps {
         //заранее нужно ключ прокинуть!!!
-        //sh 'ssh-keyscan -H 10.128.0.17 >> ~/.ssh/known_hosts'
+        sh 'ssh-keyscan -H 10.128.0.17 >> ~/.ssh/known_hosts'
         sh 'ssh root@10.128.0.17 'docker login -u 17021993 -p 17021993Nv''
         sh 'ssh root@10.128.0.17 'docker pull 17021993/mywebapp:1.0''
         //sh 'docker login -u 17021993 -p 17021993Nv'
